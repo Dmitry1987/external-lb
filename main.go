@@ -76,6 +76,8 @@ func setEnv() {
 		targetPoolSuffix = "rancher.internal"
 	}
 
+	logrus.Debugf("version: %s", "0.2" )
+
 }
 
 func main() {

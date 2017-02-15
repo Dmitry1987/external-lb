@@ -109,9 +109,10 @@ func (p *AWSELBv1Provider) GetLBConfigs() ([]model.LBConfig, error) {
 		return lbConfigs, nil
 	}
 
-	allNames := make([]string, len(allLb))
-	for i, lb := range allLb {
-		allNames[i] = *lb.LoadBalancerName
+	allNames := make([]string, 20)
+	for i := 0; i < 20 ; i++  {
+		allNames[i] = *allLb[i].LoadBalancerName
+		logrus.Debugf("LoadBalancerName => adding  %s", allNames[i] )
 	}
 
 	lbTags, err := p.svc.DescribeLBTags(allNames)

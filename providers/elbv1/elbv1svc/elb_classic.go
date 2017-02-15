@@ -61,9 +61,11 @@ func (svc *ELBClassicService) GetLoadBalancers(names ...string) ([]*elb.LoadBala
 // as map of load balancer name => map[string]string.
 func (svc *ELBClassicService) DescribeLBTags(loadBalancerNames []string) (map[string]map[string]string, error) {
 	logrus.Debugf("DescribeLBTags => %v", loadBalancerNames)
-	awsNames := make([]*string, len(loadBalancerNames))
-	for i, n := range loadBalancerNames {
-		awsNames[i] = aws.String(n)
+
+	awsNames := make([]*string, 20)
+	for i := 0; i < 20 ; i++  {
+		awsNames[i] = aws.String(loadBalancerNames[i])
+		logrus.Debugf("added => %v", awsNames[i])
 	}
 
 	params := &elb.DescribeTagsInput{
